@@ -5,6 +5,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', redirectTo: ''},
   { path: 'task', loadChildren: () => import('./components/task/task.module').then(m => m.TaskModule)},
   { path: '**', component: NotFoundComponent }
 ];
