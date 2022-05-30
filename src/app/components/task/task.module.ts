@@ -5,6 +5,7 @@ import { AddTaskComponent } from './add/add-task.component';
 import { EditTaskComponent } from './edit/edit-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskRoutingModule } from './task-routing.module';
+import { ButtonModule} from 'primeng/button';
 
 
 
@@ -17,7 +18,8 @@ import { TaskRoutingModule } from './task-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TaskRoutingModule
+    TaskRoutingModule,
+    ButtonModule
   ]
 })
 export class TaskModule { }
