@@ -1,1 +1,24 @@
-<button pButton type="button">Prime NG</button>
+
+<div class="flex m-5 align-items-center justify-content-center">
+
+  <div class="shadow-4 p-5 border-round-sm font-semibold">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div class="p-3">
+      <span class="p-float-label">
+        <input formControlName="taskName" id="float-input" type="text" pInputText>
+        <label for="float-input">Task Title </label>
+      </span>
+    </div>
+
+    <div class="p-3">
+      <span class="p-float-label">
+        <textarea formControlName="taskDescription" id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+        <label for="float-input">Task Description</label>
+      </span>
+    </div>
+
+    <button type="submit" pButton [disabled]="disabled" styleClass="p-button" class="m-3"
+    label="Add Task" icon="pi pi-check" iconPos="right"></button>
+  </form>
+
+  </div>
