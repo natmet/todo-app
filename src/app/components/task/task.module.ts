@@ -5,11 +5,7 @@ import { AddTaskComponent } from './add/add-task.component';
 import { EditTaskComponent } from './edit/edit-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskRoutingModule } from './task-routing.module';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DragDropModule } from 'primeng/dragdrop';
-import { CardModule} from 'primeng/card';
+import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -21,11 +17,7 @@ import { CardModule} from 'primeng/card';
     CommonModule,
     ReactiveFormsModule,
     TaskRoutingModule,
-    ButtonModule,
-    InputTextareaModule,
-    InputTextModule,
-    DragDropModule,
-    CardModule
+    PrimeNgModule
   ],
 })
 export class TaskModule {}

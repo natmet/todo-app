@@ -1,7 +1,7 @@
 export interface Task {
   taskName: string,
   taskDescription: string,
-  taskStatus?: TaskCombox[]
+  taskStatus: number
 }
 
 export interface TaskCombox {

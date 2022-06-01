@@ -8,7 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,8 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     TaskModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

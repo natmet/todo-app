@@ -3,26 +3,31 @@
   <div class="shadow-1 bg-cyan-50 col-4">
     <h3 class="white-space-normal">Pending <i class="pi pi-clock"></i></h3>
 
-      <p-card *ngFor="let task of pendingTasks" header="header">
+    <div class="p-2" *ngFor="let task of pendingTasks">
+      <p-card pDraggable="task" header="header">
         {{task.taskDescription}}
       </p-card>
+    </div>
 
 
   </div>
 
   <div class=" shadow-1 card surface-100 col-4">
     <h3 class="white-space-normal">Doing <i class="pi pi-chart-line"></i></h3>
-    <p-card *ngFor="let task of doingTasks" header="header">
-      {{task.taskDescription}}
-    </p-card>
-
+    <div class="p-2" *ngFor="let task of doingTasks">
+      <p-card pDraggable="task" header="header">
+        {{task.taskDescription}}
+      </p-card>
+    </div>
   </div>
 
   <div class=" shadow-1  card bg-teal-100 col-4">
     <h3 class="white-space-normal">Done <i class="pi pi-check-square"></i></h3>
-    <p-card *ngFor="let task of doneTasks" header="header">
-      {{task.taskDescription}}
-    </p-card>
+    <div class="p-2" *ngFor="let task of doneTasks">
+      <p-card pDraggable="task" header="header">
+        {{task.taskDescription}}
+      </p-card>
+    </div>
 
   </div>
 
