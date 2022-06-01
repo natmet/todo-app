@@ -7,7 +7,9 @@ import { Task } from '../models/task.model';
 })
 export class TaskService {
 
-  allTask: Task[] = [];
+  allTask: Task[] = [
+    {IdTask: 1, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 1}
+  ];
 
   constructor() {}
 

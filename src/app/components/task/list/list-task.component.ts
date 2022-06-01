@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/core/services/task.service';
 import { Task } from 'src/app/core/models/task.model';
-import { TaskStatus } from 'src/app/core/enums/task-status.enum';
-import { of } from 'rxjs';
+
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -12,7 +12,6 @@ export class ListTaskComponent implements OnInit {
   pendingTasks!: Task[];
   doingTasks!: Task[];
   doneTasks!: Task[];
-
 
   constructor(private taskService: TaskService) {}
 

@@ -17,10 +17,11 @@
 
   </div>
 
-  <div (dragover)="allowDrop($event)" (drop)="task.dropDone()" class="drag-column drop-column shadow-1 card bg-teal-100 col-4">
+  <div (dragover)="allowDrop($event)" (drop)="task.dropDone()"
+    class="drag-column drop-column shadow-1 card bg-teal-100 col-4">
 
     <h3 class="white-space-normal">Done <i class="pi pi-check-square"></i></h3>
-    <app-task-item  (loadAll)="loadAllTasks()"  [tasks]="doneTasks"></app-task-item>
+    <app-task-item (loadAll)="loadAllTasks()"  [tasks]="doneTasks"></app-task-item>
 
   </div>
 

@@ -22,4 +22,10 @@ describe('TaskItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the task title',() => {
+
+
+  })
+
 });
