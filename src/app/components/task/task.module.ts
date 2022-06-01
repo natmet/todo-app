@@ -5,9 +5,11 @@ import { AddTaskComponent } from './add/add-task.component';
 import { EditTaskComponent } from './edit/edit-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskRoutingModule } from './task-routing.module';
-import { ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DragDropModule } from 'primeng/dragdrop';
+import { CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TaskRoutingModule,
     ButtonModule,
     InputTextareaModule,
-    InputTextModule
-  ]
+    InputTextModule,
+    DragDropModule,
+    CardModule
+  ],
 })
-export class TaskModule { }
+export class TaskModule {}

@@ -1,1 +1,29 @@
-<p>list-task works!</p>
+<div class="flex min-h-screen">
+
+  <div class="shadow-1 bg-cyan-50 col-4">
+    <h3 class="white-space-normal">Pending <i class="pi pi-clock"></i></h3>
+
+      <p-card *ngFor="let task of pendingTasks" header="header">
+        {{task.taskDescription}}
+      </p-card>
+
+
+  </div>
+
+  <div class=" shadow-1 card surface-100 col-4">
+    <h3 class="white-space-normal">Doing <i class="pi pi-chart-line"></i></h3>
+    <p-card *ngFor="let task of doingTasks" header="header">
+      {{task.taskDescription}}
+    </p-card>
+
+  </div>
+
+  <div class=" shadow-1  card bg-teal-100 col-4">
+    <h3 class="white-space-normal">Done <i class="pi pi-check-square"></i></h3>
+    <p-card *ngFor="let task of doneTasks" header="header">
+      {{task.taskDescription}}
+    </p-card>
+
+  </div>
+
+</div>

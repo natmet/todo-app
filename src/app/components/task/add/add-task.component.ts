@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddTaskComponent implements OnInit {
 
-  taskForm!: FormGroup;
+  taskForm: FormGroup = new FormGroup({});
   disabled = true;
 
   constructor(private fb: FormBuilder) { }
@@ -18,16 +18,19 @@ export class AddTaskComponent implements OnInit {
     this.setEvents();
   }
 
-  setForm(): FormGroup {
+  private setForm(): FormGroup {
     return this.fb.group({
       taskName: [null, Validators.required],
-      taskDescription: [null, Validators.required]
+      taskDescription: [null, Validators.required],
+      // taskStatus: [null, Validators.required]
     })
 
   }
 
-  setEvents(): void {
-    this.taskForm.statusChanges.subscribe(()=> {
+  private setEvents(): void {
+    this.taskForm.statusChanges.subscribe((data)=> {
+      console.log(data);
+
       this.disabled = this.taskForm.valid ? false : true;
     })
   }
