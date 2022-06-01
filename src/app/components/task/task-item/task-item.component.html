@@ -1,0 +1,5 @@
+<div draggable="true" (dragstart)="dragStart(task)" class="p-2" *ngFor="let task of tasks">
+  <p-card  header="header">
+    {{task.taskDescription}}
+  </p-card>
+</div>
