@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TaskStatus } from '../enums/task-status.enum';
 import { Task } from '../models/task.model';
 
 @Injectable({
@@ -6,52 +7,32 @@ import { Task } from '../models/task.model';
 })
 export class TaskService {
 
-  pendingTasks: Task[] = [
-    // { taskName: 'tarea 1', taskDescription: 'desc 1', taskStatus: 1 },
-    // { taskName: 'tarea 2', taskDescription: 'desc 2', taskStatus: 1 },
-    // { taskName: 'tarea 3', taskDescription: 'desc 3', taskStatus: 1 }
-  ];
-
-  doingTasks: Task[] = [
-    // { taskName: 'doing 1', taskDescription: 'desc 1', taskStatus: 2 },
-    // { taskName: 'doing 2', taskDescription: 'desc 2', taskStatus: 2 },
-  ];
-
-  doneTasks: Task[] = [
-    // { taskName: 'done 1', taskDescription: 'desc 1', taskStatus: 3  }
-  ];
+  allTask: Task[] = [];
 
   constructor() {}
 
   getPendingTasks(): Task[] {
-    return this.pendingTasks;
+    return this.allTask.filter(task => task.taskStatus === TaskStatus.Pending);
   }
 
   getDoingTasks(): Task[] {
-    return this.doingTasks;
+    return this.allTask.filter(task => task.taskStatus === TaskStatus.Doing);
   }
 
   getDoneTasks(): Task[] {
-    return this.doneTasks;
+    return this.allTask.filter(task => task.taskStatus === TaskStatus.Done);
   }
 
   saveTask(task: Task): void {
+    if(isNaN(task.IdTask)){
+      task.IdTask = this.allTask.length+1;
+      this.allTask.push(task);
+    }else {
+      const index = this.allTask.findIndex(taskSaved => taskSaved.IdTask === task.IdTask);
 
-    switch (task.taskStatus) {
-      case 1:
-        this.pendingTasks.push(task);
-        break;
-
-      case 2:
-        this.doingTasks.push(task);
-        break;
-
-      case 3:
-        this.doneTasks.push(task);
-        break;
-
-      default:
-        break;
+      if(index >= 0){
+        this.allTask[index] = {...task};
+      }
     }
   }
 }

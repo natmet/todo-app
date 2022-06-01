@@ -34,7 +34,6 @@ export class AddTaskComponent implements OnInit {
 
   private setForm(): FormGroup {
     return this.fb.group({
-      idTask: [null, Validators.required],
       taskName: [null, Validators.required],
       taskDescription: [null, Validators.required],
       taskStatus: [null, Validators.required]

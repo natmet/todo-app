@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TaskRoutingModule } from './task-routing.module';
 import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { TaskItemComponent } from './task-item/task-item.component';
 
 @NgModule({
   declarations: [
     ListTaskComponent,
     AddTaskComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    TaskItemComponent
   ],
   imports: [
     CommonModule,

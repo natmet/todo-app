@@ -3,12 +3,6 @@
   <div class="shadow-4 p-5 border-round-sm font-semibold">
     <h3>Add a New Task</h3>
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-      <div class="m-3">
-        <span class="p-float-label">
-          <input formControlName="idTask" id="float-input" type="text" pInputText mask='0' >
-          <label for="float-input"> Id Task </label>
-        </span>
-      </div>
 
       <div class="m-3">
         <span class="p-float-label">

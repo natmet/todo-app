@@ -1,34 +1,26 @@
+<!-- Crear componente columnas status -->
 <div class="flex min-h-screen">
 
-  <div pDroppable="task" (onDrop)="drop()" class="drag-column drop-column shadow-1 bg-cyan-50 col-4">
+  <div (dragover)="allowDrop($event)" (drop)="task.dropPending()"
+    class="drag-column drop-column shadow-1 bg-cyan-50 col-4">
+
     <h3 class="white-space-normal">Pending <i class="pi pi-clock"></i></h3>
-
-    <div class="p-2" *ngFor="let task of pendingTasks">
-      <p-card pDraggable="task" (onDragStart)="dragStart($event, task)" (onDragEnd)="dragEnd()" header="header">
-        {{task.taskDescription}}
-      </p-card>
-    </div>
-
+    <app-task-item #task (loadAll)="loadAllTasks()" [tasks]="pendingTasks"></app-task-item>
 
   </div>
 
-  <div #pending pDroppable="task" (onDrop)="drop()" class="drag-column drop-column shadow-1 card surface-100 col-4">
+  <div (dragover)="allowDrop($event)" (drop)="task.dropDoing()"
+    class="drag-column drop-column shadow-1 card surface-100 col-4">
+
     <h3 class="white-space-normal">Doing <i class="pi pi-chart-line"></i></h3>
+    <app-task-item (loadAll)="loadAllTasks()" [tasks]="doingTasks"></app-task-item>
 
-    <div class="p-2" *ngFor="let task of doingTasks">
-      <p-card pDraggable="task" (onDragStart)="dragStart($event, task)" (onDragEnd)="dragEnd()" header="header">
-        {{task.taskDescription}}
-      </p-card>
-    </div>
   </div>
 
-  <div pDroppable="task" (onDrop)="drop()" class="drag-column drop-column shadow-1 card bg-teal-100 col-4">
+  <div (dragover)="allowDrop($event)" (drop)="task.dropDone()" class="drag-column drop-column shadow-1 card bg-teal-100 col-4">
+
     <h3 class="white-space-normal">Done <i class="pi pi-check-square"></i></h3>
-    <div class="p-2" *ngFor="let task of doneTasks">
-      <p-card pDraggable="task" (onDragStart)="dragStart($event, task)" (onDragEnd)="dragEnd()" header="header">
-        {{task.taskDescription}}
-      </p-card>
-    </div>
+    <app-task-item  (loadAll)="loadAllTasks()"  [tasks]="doneTasks"></app-task-item>
 
   </div>
 
