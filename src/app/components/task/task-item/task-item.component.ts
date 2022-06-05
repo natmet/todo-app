@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TaskStatus } from 'src/app/core/enums/task-status.enum';
 import { Task } from 'src/app/core/models/task.model';
-import { TaskService } from 'src/app/core/services/task.service';
 
 @Component({
   selector: 'app-task-item',

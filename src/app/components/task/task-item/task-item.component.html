@@ -1,5 +1,5 @@
 <div draggable="true" (dragstart)="startDragging(task)" class="p-2" *ngFor="let task of tasks">
-  <p-card  header="header">
+  <p-card  header="{{task.taskName}}">
     {{task.taskDescription}}
   </p-card>
 </div>
