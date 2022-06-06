@@ -8,7 +8,9 @@ import { Task } from '../models/task.model';
 export class TaskService {
 
   allTask: Task[] = [
-    {IdTask: 1, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 1}
+    {IdTask: 1, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 1},
+    {IdTask: 2, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 2},
+    {IdTask: 3, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 3}
   ];
 
   constructor() {}
