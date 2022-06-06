@@ -7,11 +7,7 @@ import { Task } from '../models/task.model';
 })
 export class TaskService {
 
-  allTask: Task[] = [
-    {IdTask: 1, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 1},
-    {IdTask: 2, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 2},
-    {IdTask: 3, taskName: 'First Task', taskDescription: 'Description Task', taskStatus: 3}
-  ];
+  allTask: Task[] = [];
 
   constructor() {}
 
@@ -31,6 +27,7 @@ export class TaskService {
     if(isNaN(task.IdTask)){
       task.IdTask = this.allTask.length+1;
       this.allTask.push(task);
+      localStorage.setItem(`${task.IdTask}`,JSON.stringify(task));
     }else {
       const index = this.allTask.findIndex(taskSaved => taskSaved.IdTask === task.IdTask);
 
