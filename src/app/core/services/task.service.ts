@@ -30,7 +30,6 @@ export class TaskService {
   public loadSavedTasks(){
 
     this.allTask = JSON.parse(localStorage.getItem('task'));
-    console.log(this.allTask);
 
   }
 
