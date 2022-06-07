@@ -17,6 +17,7 @@ export class ListTaskComponent implements OnInit {
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
+    this.taskService.loadSavedTasks();
     this.loadAllTasks();
   }
 
@@ -26,7 +27,7 @@ export class ListTaskComponent implements OnInit {
     this.doneTasks = this.taskService.getDoneTasks();
   }
 
-  allowDrop($event: DragEvent): void {
+  public allowDrop($event: DragEvent): void {
     $event.preventDefault();
   }
 
@@ -48,11 +49,11 @@ export class ListTaskComponent implements OnInit {
     this.loadAllTasks();
   }
 
-  dragStart(task: Task) {
+  public dragStart(task: Task) {
     this.draggedTask = task;
   }
 
-  dragEnd() {
+  public dragEnd() {
     this.draggedTask = null;
   }
 }
