@@ -14,19 +14,11 @@ export class TaskService {
   private saveInLocalStorage(task: Task): void {
 
     try {
-      // const newTask: Task = { IdTask: null, taskName: null,taskDescription: null, taskStatus: null }
-      // const storedTask = JSON.parse(localStorage.getItem('task')) || newTask ;
+      const storedTask = JSON.parse(localStorage.getItem('task')) ?? [] ;
 
-      // console.log("Stored Task:", storedTask);
+      let taskToSave = [...storedTask,task]
 
-      // let taskToSave = {...storedTask,...task}
-      // console.log("Task to save:", taskToSave);
-
-      // localStorage.setItem('task', JSON.stringify(taskToSave));
-
-      localStorage.setItem(`task_${task.IdTask}`,JSON.stringify(task));
-
-
+      localStorage.setItem('task', JSON.stringify(taskToSave));
 
     } catch (error) {
       console.log("Error saving local storage");
@@ -36,16 +28,10 @@ export class TaskService {
   }
 
   public loadSavedTasks(){
-    console.log("hola");
 
-    let taskIndex = 1;
+    this.allTask = JSON.parse(localStorage.getItem('task'));
+    console.log(this.allTask);
 
-    while(localStorage.getItem(`task_${taskIndex}`)){
-      console.log("entre");
-      const task = JSON.parse(localStorage.getItem(`task_${taskIndex}`));
-      this.saveTask(task);
-      taskIndex++;
-    };
   }
 
   public getPendingTasks(): Task[] {
