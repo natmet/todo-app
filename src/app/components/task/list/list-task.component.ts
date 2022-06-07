@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/core/services/task.service';
 import { Task } from 'src/app/core/models/task.model';
 import { TaskStatus } from 'src/app/core/enums/task-status.enum';
-import { of } from 'rxjs';
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -12,11 +12,12 @@ export class ListTaskComponent implements OnInit {
   pendingTasks!: Task[];
   doingTasks!: Task[];
   doneTasks!: Task[];
-
+  draggedTask: Task = null;
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
+    this.taskService.loadSavedTasks();
     this.loadAllTasks();
   }
 
@@ -26,8 +27,33 @@ export class ListTaskComponent implements OnInit {
     this.doneTasks = this.taskService.getDoneTasks();
   }
 
-  allowDrop($event: DragEvent): void{
-   $event.preventDefault();
- }
+  public allowDrop($event: DragEvent): void {
+    $event.preventDefault();
+  }
 
+  public dropPending() {
+    this.draggedTask.taskStatus = TaskStatus.Pending;
+    this.taskService.saveTask(this.draggedTask);
+    this.loadAllTasks();
+  }
+
+  public dropDoing() {
+    this.draggedTask.taskStatus = TaskStatus.Doing;
+    this.taskService.saveTask(this.draggedTask);
+    this.loadAllTasks();
+  }
+
+  public dropDone() {
+    this.draggedTask.taskStatus = TaskStatus.Done;
+    this.taskService.saveTask(this.draggedTask);
+    this.loadAllTasks();
+  }
+
+  public dragStart(task: Task) {
+    this.draggedTask = task;
+  }
+
+  public dragEnd() {
+    this.draggedTask = null;
+  }
 }

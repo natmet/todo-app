@@ -11,22 +11,45 @@ export class TaskService {
 
   constructor() {}
 
-  getPendingTasks(): Task[] {
+  private saveInLocalStorage(task: Task): void {
+
+    try {
+      const storedTask = JSON.parse(localStorage.getItem('task')) ?? [] ;
+
+      let taskToSave = [...storedTask,task]
+
+      localStorage.setItem('task', JSON.stringify(taskToSave));
+
+    } catch (error) {
+      console.log("Error saving local storage");
+
+    }
+
+  }
+
+  public loadSavedTasks(){
+
+    this.allTask = JSON.parse(localStorage.getItem('task'));
+
+  }
+
+  public getPendingTasks(): Task[] {
     return this.allTask.filter(task => task.taskStatus === TaskStatus.Pending);
   }
 
-  getDoingTasks(): Task[] {
+  public getDoingTasks(): Task[] {
     return this.allTask.filter(task => task.taskStatus === TaskStatus.Doing);
   }
 
-  getDoneTasks(): Task[] {
+  public getDoneTasks(): Task[] {
     return this.allTask.filter(task => task.taskStatus === TaskStatus.Done);
   }
 
-  saveTask(task: Task): void {
+  public saveTask(task: Task): void {
     if(isNaN(task.IdTask)){
       task.IdTask = this.allTask.length+1;
       this.allTask.push(task);
+      this.saveInLocalStorage(task);
     }else {
       const index = this.allTask.findIndex(taskSaved => taskSaved.IdTask === task.IdTask);
 

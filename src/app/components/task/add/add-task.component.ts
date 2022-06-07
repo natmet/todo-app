@@ -47,7 +47,7 @@ export class AddTaskComponent implements OnInit {
     })
   }
 
-  onSubmit(): void{
+  public onSubmit(): void {
     this.taskService.saveTask(this.taskForm.value);
     this.showToast();
 
@@ -59,7 +59,7 @@ export class AddTaskComponent implements OnInit {
 
   }
 
-  showToast(): void {
+  private showToast(): void {
     this.messageService.add({severity:'success', summary: 'Task Saved', detail: 'This Task Was Added Correctly.'})
   }
 
