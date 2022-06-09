@@ -9,25 +9,26 @@ import { MessageService } from 'primeng/api';
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
-  providers: [ MessageService ]
+  providers: [MessageService],
 })
 export class AddTaskComponent implements OnInit {
-
-  taskForm: FormGroup = new FormGroup({});
-  disabled = true;
-  loading = false;
-  statusCombox: TaskCombox[] = [
-    {id: 1, text: 'Pending'},
-    {id: 2, text: 'Doing'},
-    {id: 3, text: 'Done'}
+  public statusCombox: TaskCombox[] = [
+    { id: 1, text: 'Pending' },
+    { id: 2, text: 'Doing' },
+    { id: 3, text: 'Done' },
   ];
+  public disabled = true;
+  public loading = false;
+  public taskForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder,
-    private taskService:TaskService,
+  constructor(
+    private fb: FormBuilder,
+    private taskService: TaskService,
     private router: Router,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.taskForm = this.setForm();
     this.setEvents();
   }
@@ -36,15 +37,14 @@ export class AddTaskComponent implements OnInit {
     return this.fb.group({
       taskName: [null, Validators.required],
       taskDescription: [null, Validators.required],
-      taskStatus: [null, Validators.required]
-    })
-
+      taskStatus: [null, Validators.required],
+    });
   }
 
   private setEvents(): void {
-    this.taskForm.statusChanges.subscribe(()=> {
-      this.disabled = this.taskForm.valid ? false : true;
-    })
+    this.taskForm.statusChanges.subscribe(() => {
+      this.disabled = !this.taskForm.valid;
+    });
   }
 
   public onSubmit(): void {
@@ -52,15 +52,16 @@ export class AddTaskComponent implements OnInit {
     this.showToast();
 
     this.loading = true;
-    setTimeout(()=>{
-
+    setTimeout(() => {
       this.router.navigate(['/task/list']);
-    },2300);
-
+    }, 2300);
   }
 
   private showToast(): void {
-    this.messageService.add({severity:'success', summary: 'Task Saved', detail: 'This Task Was Added Correctly.'})
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Task Saved',
+      detail: 'This Task Was Added Correctly.',
+    });
   }
-
 }

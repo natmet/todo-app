@@ -19,7 +19,6 @@ import { NgxMaskModule } from 'ngx-mask';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TaskModule,
     SharedModule,
     RouterModule,
     BrowserAnimationsModule

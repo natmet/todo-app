@@ -6,55 +6,50 @@ import { Task } from '../models/task.model';
   providedIn: 'root',
 })
 export class TaskService {
-
   allTask: Task[] = [];
 
-  constructor() {}
-
   private saveInLocalStorage(task: Task): void {
-
     try {
-      const storedTask = JSON.parse(localStorage.getItem('task')) ?? [] ;
+      const storedTask = JSON.parse(localStorage.getItem('task')) ?? [];
 
-      let taskToSave = [...storedTask,task]
+      let taskToSave = [...storedTask, task];
 
       localStorage.setItem('task', JSON.stringify(taskToSave));
-
     } catch (error) {
-      console.log("Error saving local storage");
-
+      console.log('Error saving local storage');
     }
-
   }
 
-  public loadSavedTasks(){
-
+  public loadSavedTasks() {
     this.allTask = JSON.parse(localStorage.getItem('task'));
-
   }
 
   public getPendingTasks(): Task[] {
-    return this.allTask.filter(task => task.taskStatus === TaskStatus.Pending);
+    return this.allTask.filter(
+      (task) => task.taskStatus === TaskStatus.Pending
+    );
   }
 
   public getDoingTasks(): Task[] {
-    return this.allTask.filter(task => task.taskStatus === TaskStatus.Doing);
+    return this.allTask.filter((task) => task.taskStatus === TaskStatus.Doing);
   }
 
   public getDoneTasks(): Task[] {
-    return this.allTask.filter(task => task.taskStatus === TaskStatus.Done);
+    return this.allTask.filter((task) => task.taskStatus === TaskStatus.Done);
   }
 
   public saveTask(task: Task): void {
-    if(isNaN(task.IdTask)){
-      task.IdTask = this.allTask.length+1;
+    if (isNaN(task.IdTask)) {
+      task.IdTask = this.allTask.length + 1;
       this.allTask.push(task);
       this.saveInLocalStorage(task);
-    }else {
-      const index = this.allTask.findIndex(taskSaved => taskSaved.IdTask === task.IdTask);
+    } else {
+      const index = this.allTask.findIndex(
+        (taskSaved) => taskSaved.IdTask === task.IdTask
+      );
 
-      if(index >= 0){
-        this.allTask[index] = {...task};
+      if (index >= 0) {
+        this.allTask[index] = { ...task };
       }
     }
   }
