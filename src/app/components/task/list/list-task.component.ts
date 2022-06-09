@@ -9,14 +9,14 @@ import { TaskStatus } from 'src/app/core/enums/task-status.enum';
   styleUrls: ['./list-task.component.scss'],
 })
 export class ListTaskComponent implements OnInit {
-  pendingTasks!: Task[];
-  doingTasks!: Task[];
-  doneTasks!: Task[];
-  draggedTask: Task = null;
+  private draggedTask: Task;
+  public pendingTasks!: Task[];
+  public doingTasks!: Task[];
+  public doneTasks!: Task[];
 
   constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.taskService.loadSavedTasks();
     this.loadAllTasks();
   }

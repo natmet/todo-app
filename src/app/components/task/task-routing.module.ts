@@ -6,21 +6,14 @@ import { AddTaskComponent } from './add/add-task.component';
 import { EditTaskComponent } from './edit/edit-task.component';
 
 const routes: Routes = [
-  //resolver
   { path: 'list', component: ListTaskComponent },
   { path: 'add', component: AddTaskComponent },
-  { path: 'edit:/id', component: EditTaskComponent }
+  { path: 'edit:/id', component: EditTaskComponent },
 ];
-
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class TaskRoutingModule { }
+export class TaskRoutingModule {}

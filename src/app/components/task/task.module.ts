@@ -14,14 +14,14 @@ import { TaskItemComponent } from './task-item/task-item.component';
     ListTaskComponent,
     AddTaskComponent,
     EditTaskComponent,
-    TaskItemComponent
+    TaskItemComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     TaskRoutingModule,
     PrimeNgModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
 })
 export class TaskModule {}
