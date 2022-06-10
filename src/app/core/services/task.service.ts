@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TaskStatus } from '../enums/task-status.enum';
 import { Task } from '../models/task.model';
+import { LocalStorageClientService } from './local-storage-client.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,20 +9,10 @@ import { Task } from '../models/task.model';
 export class TaskService {
   allTask: Task[] = [];
 
-  private saveInLocalStorage(task: Task): void {
-    try {
-      const storedTask = JSON.parse(localStorage.getItem('task')) ?? [];
-
-      let taskToSave = [...storedTask, task];
-
-      localStorage.setItem('task', JSON.stringify(taskToSave));
-    } catch (error) {
-      console.log('Error saving local storage');
-    }
-  }
+  constructor(private localStorageClientService: LocalStorageClientService) {}
 
   public loadSavedTasks() {
-    this.allTask = JSON.parse(localStorage.getItem('task'));
+    this.allTask = JSON.parse(localStorage.getItem('task')) ?? [];
   }
 
   public getPendingTasks(): Task[] {
@@ -42,7 +33,7 @@ export class TaskService {
     if (isNaN(task.IdTask)) {
       task.IdTask = this.allTask.length + 1;
       this.allTask.push(task);
-      this.saveInLocalStorage(task);
+      this.localStorageClientService.saveTask(task);
     } else {
       const index = this.allTask.findIndex(
         (taskSaved) => taskSaved.IdTask === task.IdTask
@@ -50,6 +41,7 @@ export class TaskService {
 
       if (index >= 0) {
         this.allTask[index] = { ...task };
+        this.localStorageClientService.updateTasks(task.IdTask, task);
       }
     }
   }
